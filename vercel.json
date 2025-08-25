@@ -7,7 +7,7 @@
 "config": {
 "maxLambdaSize": "15mb",
 "runtime": "python3.12",
-"buildCommand": "pip install poetry==2.1.4 && poetry config virtualenvs.create false && poetry install --no-dev"
+"buildCommand": "pip install poetry==2.1.4 && poetry config virtualenvs.create false && poetry install --no-dev && poetry export -f requirements.txt --output requirements.txt --without-hashes"
 }
 },
 {
@@ -26,6 +26,10 @@
 },
 {
 "src": "/(.)",
+"dest": "frontend/build/$1"
+},
+{
+"src": "/(.*\\.(js|css|ico|jpg|png|svg))$",
 "dest": "frontend/build/$1"
 }
 ],
