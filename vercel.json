@@ -21,7 +21,7 @@
 ],
 "routes": [
 {
-"src": "/api/(.)",
+    "src": "/api/(.)",
 "dest": "src/my_test_app/main.py"
 },
 {
@@ -29,7 +29,7 @@
 "dest": "frontend/build/$1"
 },
 {
-"src": "/(.*\\.(js|css|ico|jpg|png|svg))$",
+"src": "/(.*\.(js|css|ico|jpg|png|svg))$",
 "dest": "frontend/build/$1"
 }
 ],
