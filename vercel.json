@@ -1,26 +1,36 @@
 {
-     "version": 2,
-     "builds": [
-       {
-         "src": "src/my_test_app/main.py",
-         "use": "@vercel/python"
-       },
-       {
-         "src": "frontend/build/**/*",
-         "use": "@vercel/static"
-       }
-     ],
-     "routes": [
-       {
-         "src": "/api/(.*)",
-         "dest": "src/my_test_app/main.py"
-       },
-       {
-         "src": "/(.*)",
-         "dest": "frontend/build/$1"
-       }
-     ],
-     "env": {
-       "APP_MODULE": "src.my_test_app.main:app"
-     }
-   }
+"version": 2,
+"builds": [
+{
+"src": "src/my_test_app/main.py",
+"use": "@vercel/python",
+"config": {
+"maxLambdaSize": "15mb",
+"runtime": "python3.12",
+"buildCommand": "pip install poetry==2.1.4 && poetry config virtualenvs.create false && poetry install --no-dev"
+}
+},
+{
+"src": "frontend/package.json",
+"use": "@vercel/static-build",
+"config": {
+"distDir": "build",
+"buildCommand": "cd frontend && npm install && npm run build"
+}
+}
+],
+"routes": [
+{
+"src": "/api/(.)",
+"dest": "src/my_test_app/main.py"
+},
+{
+"src": "/(.)",
+"dest": "frontend/build/$1"
+}
+],
+"env": {
+"APP_MODULE": "src.my_test_app.main:app",
+"PYTHON_VERSION": "3.12.4"
+}
+}
