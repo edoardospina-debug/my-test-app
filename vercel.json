@@ -1,13 +1,12 @@
 {
   "version": 2,
+  "installCommand": "pip install -r requirements.txt && cd frontend && npm install",
+  "buildCommand": "cd frontend && npm run build",
+  "outputDirectory": "frontend/build",
   "functions": {
     "src/my_test_app/main.py": {
       "runtime": "python3.12",
       "maxDuration": 30
-    },
-    "frontend/package.json": {
-      "buildCommand": "cd frontend && npm install && npm run build",
-      "outputDirectory": "frontend/build"
     }
   },
   "routes": [
