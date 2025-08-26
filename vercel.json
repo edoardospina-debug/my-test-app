@@ -2,7 +2,7 @@
   "version": 2,
   "builds": [
     {
-      "src": "src/my_test_app/main.py",
+      "src": "requirements.txt",
       "use": "@vercel/python",
       "config": {
         "maxLambdaSize": "15mb",
@@ -10,8 +10,12 @@
       }
     },
     {
-      "src": "requirements.txt",
-      "use": "@vercel/python"
+      "src": "src/my_test_app/main.py",
+      "use": "@vercel/python",
+      "config": {
+        "maxLambdaSize": "15mb",
+        "runtime": "python3.12"
+      }
     },
     {
       "src": "frontend/package.json",
@@ -25,11 +29,11 @@
   "routes": [
     {
       "src": "/api/(.*)",
-      "dest": "/src/my_test_app/main.py"
+      "dest": "/"
     },
     {
       "src": "/debug",
-      "dest": "/src/my_test_app/main.py"
+      "dest": "/"
     },
     {
       "src": "/static/(.*)",
