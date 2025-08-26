@@ -5,7 +5,6 @@
   "outputDirectory": "frontend/build",
   "functions": {
     "src/my_test_app/main.py": {
-      "runtime": "python3.12",
       "maxDuration": 30
     }
   },
