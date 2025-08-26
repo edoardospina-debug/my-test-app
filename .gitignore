@@ -7,4 +7,5 @@ mobile/node_modules/
 pycache/
 node_modules
 api/
+requirements.txt
 .vercel
