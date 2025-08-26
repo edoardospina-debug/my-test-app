@@ -20,11 +20,11 @@
 ],
 "routes": [
 {
-"src": "/api/(.)",
+"src": "/api/(.*)",
 "dest": "/src/my_test_app/main.py"
 },
 {
-"src": "/(.)",
+"src": "/(.*)",
 "dest": "/frontend/build/$1"
 },
 {
