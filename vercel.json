@@ -1,43 +1,50 @@
 {
-"version": 2,
-"builds": [
-{
-"src": "src/my_test_app/main.py",
-"use": "@vercel/python",
-"config": {
-"maxLambdaSize": "15mb",
-"runtime": "python3.12"
-}
-},
-{
-"src": "frontend/package.json",
-"use": "@vercel/static-build",
-"config": {
-"distDir": "build",
-"buildCommand": "cd frontend && npm install && npm run build"
-}
-}
-],
-"routes": [
-{
-"src": "/api/(.*)",
-"dest": "/src/my_test_app/main.py"
-},
-{
-"src": "/(.*)",
-"dest": "/frontend/build/$1"
-},
-{
-"src": "/(.*\\.(js|css|ico|jpg|png|svg))$",
-"dest": "/frontend/build/$1"
-},
-{
-"src": "/debug",
-"dest": "/src/my_test_app/main.py"
-}
-],
-"env": {
-"APP_MODULE": "src.my_test_app.main:app",
-"PYTHON_VERSION": "3.12.4"
-}
+  "version": 2,
+  "builds": [
+    {
+      "src": "src/my_test_app/main.py",
+      "use": "@vercel/python",
+      "config": {
+        "maxLambdaSize": "15mb",
+        "runtime": "python3.12"
+      }
+    },
+    {
+      "src": "frontend/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "frontend/build"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/src/my_test_app/main.py"
+    },
+    {
+      "src": "/debug",
+      "dest": "/src/my_test_app/main.py"
+    },
+    {
+      "src": "/static/(.*)",
+      "dest": "/frontend/build/static/$1"
+    },
+    {
+      "src": "/(.*\\.(js|css|ico|jpg|png|svg|json|txt))$",
+      "dest": "/frontend/build/$1"
+    },
+    {
+      "src": "/",
+      "dest": "/frontend/build/index.html"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/frontend/build/index.html"
+    }
+  ],
+  "env": {
+    "APP_MODULE": "src.my_test_app.main:app",
+    "PYTHON_VERSION": "3.12.4"
+  }
 }
