@@ -1,31 +1,15 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "requirements.txt",
-      "use": "@vercel/python",
-      "config": {
-        "maxLambdaSize": "15mb",
-        "runtime": "python3.12"
-      }
+  "functions": {
+    "src/my_test_app/main.py": {
+      "runtime": "python3.12",
+      "maxDuration": 30
     },
-    {
-      "src": "src/my_test_app/main.py",
-      "use": "@vercel/python",
-      "config": {
-        "maxLambdaSize": "15mb",
-        "runtime": "python3.12"
-      }
-    },
-    {
-      "src": "frontend/package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "build",
-        "buildCommand": "cd frontend && npm install && npm run build"
-      }
+    "frontend/package.json": {
+      "buildCommand": "cd frontend && npm install && npm run build",
+      "outputDirectory": "frontend/build"
     }
-  ],
+  },
   "routes": [
     {
       "src": "/api/(.*)",
