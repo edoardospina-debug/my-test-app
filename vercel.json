@@ -1,17 +1,12 @@
 {
   "version": 2,
-  "installCommand": "pip install -r requirements.txt && cd frontend && npm install",
-  "buildCommand": "cd frontend && npm run build",
+  "buildCommand": "cd frontend && npm install && npm run build",
   "outputDirectory": "frontend/build",
-  "functions": {
-    "src/my_test_app/main.py": {
-      "maxDuration": 30
-    }
-  },
+  "installCommand": "pip install -r requirements.txt",
   "routes": [
     {
       "src": "/api/(.*)",
-      "dest": "/"
+      "dest": "/api/index.py"
     },
     {
       "src": "/debug",
@@ -33,9 +28,5 @@
       "src": "/(.*)",
       "dest": "/frontend/build/index.html"
     }
-  ],
-  "env": {
-    "APP_MODULE": "src.my_test_app.main:app",
-    "PYTHON_VERSION": "3.12.4"
-  }
+  ]
 }
