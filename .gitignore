@@ -6,3 +6,5 @@ frontend/build/
 mobile/node_modules/
 pycache/
 node_modules
+api/
+.vercel
